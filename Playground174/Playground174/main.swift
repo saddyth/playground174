@@ -130,13 +130,21 @@ print(countSum)
 //Каждое следующее число равно сумме двух предыдущих.
 print("Задание 3.1. Введите кол-во чисел фибоначчи")
 var numberOfFibonacci = Int(readLine()!)
-var fibonacciArr = [0,1]
-for i in 1..<numberOfFibonacci! - 1 {
-        
-    fibonacciArr.append(fibonacciArr[i] + fibonacciArr[i-1])
-    
+var fibonacciArr = [Int]()
+
+if numberOfFibonacci! > 1 {
+    fibonacciArr.append(contentsOf: 0...1)
+    for i in 1..<numberOfFibonacci! - 1 {
+        fibonacciArr.append(fibonacciArr[i] + fibonacciArr[i-1])
+    }
+    print(fibonacciArr)
+} else if numberOfFibonacci == 0 {
+    print(fibonacciArr)
+} else if numberOfFibonacci == 1 {
+    fibonacciArr.append(0)
+    print(fibonacciArr)
 }
-print(fibonacciArr)
+
 
 
 // Task 3.2
@@ -158,18 +166,19 @@ print(randomSet)
 //Не используйте готовый метод .max().
 print("Задание 3.3. Поиск макс элемента в массиве")
 var randomArr = [Int.random(in: 1..<101)]
-var max = 0
 while randomArr.count < 100 {
     randomArr.append(Int.random(in: 1..<101))
 }
 print(randomArr)
 
-for i in randomArr {
-    if i > max {
-        max = i
+var maxValue = randomArr[0]
+for number in randomArr {
+    if number > maxValue {
+        maxValue = number
     }
 }
-print(max)
+
+print(maxValue)
 
 //Task 3.4
 //Напишите программу, которая принимает строку и выводит ее в обратном порядке.
@@ -224,15 +233,15 @@ var luckyNumber = Int(readLine()!)
 var countLuckySum1 = Int()
 var countLuckySum2 = Int()
 
-for i in 1...6{
-    if i < 3 {
-        countLuckySum1 += luckyNumber! % 10
-        luckyNumber! /= 10
-    } else {
-        countLuckySum2 += luckyNumber! % 10
-        luckyNumber! /= 10
-    }
+for _ in 1...3{
+    countLuckySum1 += luckyNumber! % 10
+    luckyNumber! /= 10
 }
+for _ in 1...3{
+    countLuckySum2 += luckyNumber! % 10
+    luckyNumber! /= 10
+}
+
 
 if countLuckySum1 == countLuckySum2 {
     print("Билет счастливый")
